@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Modis PDS — Mimari Danışmanlık için Yapay Zekâ Destekli 3D Planlama, Render ve CRM</title>
+<meta name="description" content="Modis PDS: mimari danışmanlık ve iç mimarlık için yapay zekâ destekli 3D planlama, DWG/PDF import, 30 saniyede 4K render ve CRM entegreli teklif yazılımı.">
+<meta name="keywords" content="Modis PDS, mimari danışmanlık, iç mimarlık yazılımı, mobilya planlama, 3D kat planı, DWG to 3D, yapay zeka render, 4K render, mobilya CRM, teklif yazılımı">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Modis PDS — Mimari danışmanlıkta çizimden teklife dakikalar içinde">
+<meta property="og:description" content="Yapay zekâ destekli çizim, 4K render ve CRM entegrasyonu ile yaşam alanı deneyimini dakikalar içinde sunun.">
+<meta property="og:image" content="images/istanbul-render.jpg">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="tr" href="?lang=tr">
+<link rel="alternate" hreflang="en" href="?lang=en">
+<link rel="alternate" hreflang="ru" href="?lang=ru">
+<link rel="alternate" hreflang="ar" href="?lang=ar">
+<link rel="alternate" hreflang="x-default" href="?lang=tr">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Modis PDS","applicationCategory":"DesignApplication","operatingSystem":"Windows","description":"Mimari danışmanlık ve iç mimarlık için yapay zekâ destekli 3D planlama, render ve CRM platformu.","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"downloadUrl":"https://apps.microsoft.com/detail/9p6s9zwf98h1?hl=tr-TR&gl=TR","inLanguage":["tr","en","ru","ar"]}</script>
+<link rel="stylesheet" href="_ds/modernist-f548c5d0-6f90-4d33-9a49-57cd8896f47c/styles.css">
+<script src="_ds/modernist-f548c5d0-6f90-4d33-9a49-57cd8896f47c/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);text-wrap:pretty}
+a{color:var(--color-text);text-decoration:none}
+a:hover{color:var(--color-neutral-700)}
+*{box-sizing:border-box}
+:root{--color-accent:#1b1b1b;--color-accent-100:#ebeae9;--color-accent-200:#dcdad8;--color-accent-300:#c4c1be;--color-accent-400:#5a5857;--color-accent-500:#1b1b1b;--color-accent-600:#3a3938;--color-accent-700:#1b1b1b;--color-accent-800:#111;--color-accent-900:#000;--color-accent-2:#1b1b1b}
+:focus-visible{outline:2px solid #1b1b1b;outline-offset:2px}
+::selection{background:#d9d8d6;color:#1b1b1b}
+</style>
+</helmet>
+<div dir="{{ dir }}" lang="{{ lang }}" style="min-height:100vh;background:var(--color-bg)">
+
+<header style="position:sticky;top:0;z-index:20;background:var(--color-bg);border-bottom:2px solid var(--color-divider)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,56px);height:72px;display:flex;align-items:center;gap:32px">
+    <a href="#top" style="font-family:var(--font-heading);font-weight:800;font-size:20px;letter-spacing:-0.01em;display:flex;align-items:center;gap:10px;white-space:nowrap">
+      <img src="images/modis-logo-dark.png" alt="modis" style="height:24px;width:auto;display:block"><span style="font-weight:500;letter-spacing:0.04em">PDS</span>
+    </a>
+    <nav style="display:flex;gap:28px;flex:1;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;flex-wrap:wrap;overflow:hidden;height:20px">
+      <a href="#ozellikler">{{ t.navFeatures }}</a>
+      <a href="#indir">{{ t.navDownload }}</a>
+      <a href="#destek">{{ t.navSupport }}</a>
+    </nav>
+    <div data-lang-menu="1" style="position:relative;height:100%;display:flex;align-items:stretch;border-inline-start:2px solid var(--color-divider)">
+      <button onClick="{{ toggleMenu }}" aria-haspopup="listbox" aria-expanded="{{ menuOpen }}" aria-label="{{ t.langLabel }}" style="border:0;background:transparent;cursor:pointer;padding:0 20px;display:flex;align-items:center;gap:10px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--color-text);white-space:nowrap" style-hover="background:var(--color-neutral-200)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span>{{ langName }}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg>
+      </button>
+      <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+        <div role="listbox" style="position:absolute;top:100%;inset-inline-end:0;margin-top:2px;min-width:220px;background:var(--color-bg);border:2px solid var(--color-divider);box-shadow:var(--shadow-md);display:flex;flex-direction:column">
+          <span style="padding:12px 16px 8px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700)">{{ t.langLabel }}</span>
+          <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
+            <button role="option" aria-selected="{{ l.active }}" onClick="{{ l.select }}" style="border:0;border-top:2px solid var(--color-divider);background:transparent;cursor:pointer;padding:12px 16px;display:flex;align-items:center;gap:12px;font-family:var(--font-body);font-size:15px;font-weight:{{ l.weight }};color:var(--color-text);text-align:start" style-hover="background:var(--color-neutral-200)">
+              <span style="width:8px;height:8px;background:{{ l.mark }};display:block"></span>
+              <span style="flex:1">{{ l.name }}</span>
+              <span style="font-size:12px;letter-spacing:0.08em;opacity:0.72">{{ l.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+    <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9p6s9zwf98h1?hl=tr-TR&amp;gl=TR" target="_blank" rel="noopener" style="color:#fff;white-space:nowrap">{{ t.navDownload }}</a>
+  </div>
+</header>
+
+<section id="top" aria-roledescription="carousel" style="position:relative;height:min(82vh,860px);min-height:420px;overflow:hidden;background:var(--color-neutral-900)">
+  <sc-for list="{{ slides }}" as="s" hint-placeholder-count="1">
+    <img src="{{ s.src }}" alt="{{ s.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ s.opacity }};transform:scale({{ s.scale }});transition:opacity 1.2s ease, transform 7s ease-out">
+  </sc-for>
+  <div style="position:absolute;inset-inline-end:0;bottom:0;background:var(--color-bg);display:flex;align-items:stretch;border-top:2px solid var(--color-divider)">
+    <div style="padding:14px 20px;display:flex;flex-direction:column;justify-content:center;min-width:200px">
+      <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700);font-feature-settings:'tnum' 1">{{ counter }}</span>
+      <span style="font-size:15px;font-weight:600">{{ caption }}</span>
+    </div>
+    <button onClick="{{ prev }}" aria-label="Önceki" style="width:64px;border:0;border-inline-start:2px solid var(--color-divider);background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--color-text)" style-hover="background:var(--color-neutral-200)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform:scaleX({{ flip }})"><path d="m15 18-6-6 6-6"></path></svg>
+    </button>
+    <button onClick="{{ next }}" aria-label="Sonraki" style="width:64px;border:0;border-inline-start:2px solid var(--color-divider);background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--color-text)" style-hover="background:var(--color-neutral-200)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform:scaleX({{ flip }})"><path d="m9 18 6-6-6-6"></path></svg>
+    </button>
+  </div>
+  <div style="position:absolute;inset-inline-start:clamp(20px,4vw,56px);bottom:24px;display:flex;gap:6px">
+    <sc-for list="{{ slides }}" as="s" hint-placeholder-count="5">
+      <button onClick="{{ s.go }}" aria-label="{{ s.alt }}" style="width:40px;height:4px;border:0;padding:0;cursor:pointer;background:{{ s.bar }}"></button>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1440px;margin:0 auto;padding:clamp(48px,7vw,104px) clamp(20px,4vw,56px) clamp(40px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:40px clamp(32px,5vw,96px);align-items:end">
+  <div>
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:20px">{{ t.heroKicker }}</span>
+    <h1 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(36px,4.8vw,68px);line-height:1.04;letter-spacing:-0.02em;margin:0">{{ t.heroTitle }}</h1>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:28px;max-width:56ch">
+    <p style="font-size:18px;line-height:1.6;margin:0">{{ t.heroSub }}</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9p6s9zwf98h1?hl=tr-TR&amp;gl=TR" target="_blank" rel="noopener" style="color:#fff">{{ t.ctaDownload }}</a>
+      <a class="btn btn-secondary" href="#ozellikler">{{ t.ctaExplore }}</a>
+    </div>
+  </div>
+</section>
+
+<section id="indir" style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+  <div style="border-top:2px solid var(--color-divider);border-bottom:2px solid var(--color-divider);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
+    <a href="https://apps.microsoft.com/detail/9p6s9zwf98h1?hl=tr-TR&amp;gl=TR" target="_blank" rel="noopener" style="padding:28px 24px;display:flex;align-items:center;gap:18px;color:var(--color-text)" style-hover="background:var(--color-neutral-200)">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="20" height="14"></rect><path d="M8 21h8M12 17v4"></path></svg>
+      <span style="display:flex;flex-direction:column;flex:1"><span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.72">{{ t.dlWin }}</span><span style="font-size:20px;font-weight:700">Microsoft Store</span></span>
+      <span style="background:#1b1b1b;color:#fff;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:6px 10px">{{ t.dlNow }}</span>
+    </a>
+    <div style="padding:28px 24px;display:flex;align-items:center;gap:18px;border-inline-start:2px solid var(--color-divider)">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="14" height="20"></rect><path d="M12 18h.01"></path></svg>
+      <span style="display:flex;flex-direction:column;flex:1"><span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.72">Android</span><span style="font-size:20px;font-weight:700">Google Play</span></span>
+      <span class="tag tag-outline">{{ t.dlSoonAndroid }}</span>
+    </div>
+    <div style="padding:28px 24px;display:flex;align-items:center;gap:18px;border-inline-start:2px solid var(--color-divider)">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2" width="16" height="20"></rect><path d="M12 18h.01"></path></svg>
+      <span style="display:flex;flex-direction:column;flex:1"><span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.72">iOS · iPadOS</span><span style="font-size:20px;font-weight:700">App Store</span></span>
+      <span class="tag tag-outline">{{ t.dlSoonIos }}</span>
+    </div>
+  </div>
+</section>
+
+<section id="ozellikler" style="max-width:1440px;margin:0 auto;padding:clamp(72px,9vw,136px) clamp(20px,4vw,56px) 0">
+  <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700);margin-bottom:20px">{{ t.featKicker }}</span>
+  <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(32px,4vw,56px);line-height:1.06;letter-spacing:-0.02em;margin:0 0 clamp(40px,5vw,72px);max-width:18ch">{{ t.featTitle }}</h2>
+
+  <sc-for list="{{ features }}" as="f" hint-placeholder-count="3">
+    <article id="{{ f.anchor }}" style="border-top:2px solid var(--color-divider);padding:clamp(36px,4.5vw,64px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:36px clamp(32px,5vw,96px);align-items:start">
+      <div style="display:flex;flex-direction:column;gap:20px;max-width:54ch">
+        <span style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:700;font-feature-settings:'tnum' 1"><span style="width:10px;height:10px;background:#1b1b1b;display:block"></span>{{ f.num }}</span>
+        <h3 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(26px,2.6vw,38px);line-height:1.1;letter-spacing:-0.015em;margin:0">{{ f.title }}</h3>
+        <sc-for list="{{ f.paras }}" as="p" hint-placeholder-count="1">
+          <p style="font-size:17px;line-height:1.65;margin:0">{{ p }}</p>
+        </sc-for>
+        <sc-if value="{{ f.isRender }}" hint-placeholder-val="{{ false }}">
+          <table class="table" style="width:100%;margin-top:8px">
+            <thead><tr><th style="text-align:start">{{ t.crOutput }}</th><th style="text-align:start">{{ t.crCredit }}</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ credits }}" as="c" hint-placeholder-count="4">
+                <tr><td>{{ c.k }}</td><td style="font-weight:700;font-feature-settings:'tnum' 1">{{ c.v }}</td></tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </sc-if>
+      </div>
+
+      <div style="min-width:0">
+        <sc-if value="{{ f.isTriptych }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-divider)">
+            <figure style="margin:0;background:var(--color-bg)">
+              <div style="aspect-ratio:3/4;position:relative"><image-slot id="plan-floor" shape="rect" src="images/floor-plan-v3.jpg" placeholder="Kat planı görseli"></image-slot></div>
+              <figcaption style="padding:10px 12px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;border-top:2px solid var(--color-divider)">01 · {{ t.mPlan }}</figcaption>
+            </figure>
+            <figure style="margin:0;background:var(--color-bg)">
+              <div style="aspect-ratio:3/4;position:relative"><image-slot id="plan-render" shape="rect" src="images/render-5.jpg" placeholder="Aynı planın renderı"></image-slot></div>
+              <figcaption style="padding:10px 12px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;border-top:2px solid var(--color-divider)">02 · {{ t.mRender }}</figcaption>
+            </figure>
+            <figure style="margin:0;background:var(--color-bg)">
+              <div style="aspect-ratio:3/4;position:relative"><image-slot id="plan-quote" shape="rect" src="images/quotation.jpg" placeholder="Teklif görseli"></image-slot></div>
+              <figcaption style="padding:10px 12px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;border-top:2px solid var(--color-divider)">03 · {{ t.mQuote }}</figcaption>
+            </figure>
+          </div>
+        </sc-if>
+        <sc-if value="{{ f.isVideo }}" hint-placeholder-val="{{ false }}">
+          <div style="border:2px solid var(--color-divider)">
+            <div style="aspect-ratio:16/9;position:relative;background:var(--color-neutral-200)">
+              <sc-if value="{{ f.hasVideo }}" hint-placeholder-val="{{ false }}">
+                <video src="{{ f.videoSrc }}" ref="{{ videoRef }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" controls="{{ true }}" preload="metadata" aria-label="{{ f.mediaLabel }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#1b1b1b"></video>
+              </sc-if>
+              <sc-if value="{{ f.noVideo }}" hint-placeholder-val="{{ true }}">
+                <image-slot id="{{ f.slotId }}" shape="rect" src="{{ f.imgSrc }}" placeholder="{{ f.slotHint }}"></image-slot>
+              </sc-if>
+              <span style="position:absolute;top:0;inset-inline-start:0;background:var(--color-text);color:var(--color-bg);display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;pointer-events:none">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3l15 9-15 9z"></path></svg>Video
+              </span>
+            </div>
+            <div style="padding:10px 12px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;border-top:2px solid var(--color-divider)">{{ f.mediaLabel }}</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ f.isSupport }}" hint-placeholder-val="{{ false }}">
+          <div style="border:2px solid var(--color-divider)">
+            <a href="#egitim" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;font-weight:700" style-hover="background:var(--color-neutral-200)">
+              <span>{{ t.watch }}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform:rotate(90deg)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border-top:2px solid var(--color-divider)">
+              <a href="https://wa.me/905521284440" target="_blank" rel="noopener" style="padding:20px 16px;display:flex;flex-direction:column;gap:6px" style-hover="background:var(--color-neutral-200)">
+                <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700)">{{ t.waLabel }}</span>
+                <span dir="ltr" style="font-size:22px;font-weight:700;font-feature-settings:'tnum' 1">+90 552 128 44 40</span>
+              </a>
+              <a href="tel:4440693" style="padding:20px 16px;display:flex;flex-direction:column;gap:6px;border-inline-start:2px solid var(--color-divider)" style-hover="background:var(--color-neutral-200)">
+                <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700)">{{ t.telLabel }}</span>
+                <span dir="ltr" style="font-size:22px;font-weight:700;font-feature-settings:'tnum' 1">444 06 93</span>
+              </a>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </article>
+  </sc-for>
+</section>
+
+<section id="egitim" style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,4vw,56px) 0">
+  <div style="border-top:2px solid var(--color-divider);padding-top:clamp(36px,4.5vw,64px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(28px,3vw,44px)">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:40ch">
+      <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700)">{{ st.kicker }}</span>
+      <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(30px,3.6vw,52px);line-height:1.06;letter-spacing:-0.02em;margin:0">{{ st.title }}</h2>
+    </div>
+    <a href="{{ ytUrl }}" target="_blank" rel="noopener" class="btn btn-secondary" style="display:flex;align-items:center;gap:12px">
+      <span>{{ st.open }}</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+    </a>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;border:2px solid var(--color-divider)">
+    <div style="flex:2 1 560px;min-width:0;background:#1b1b1b">
+      <div style="aspect-ratio:16/9;position:relative">
+        <iframe src="{{ ytEmbed }}" title="{{ activeTitle }}" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block"></iframe>
+      </div>
+    </div>
+    <div style="flex:1 1 300px;min-width:0;border-inline-start:2px solid var(--color-divider);display:flex;flex-direction:column;background:var(--color-bg)">
+      <div style="padding:14px 16px;display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:2px solid var(--color-divider)">
+        <span>{{ st.list }}</span><span style="font-feature-settings:'tnum' 1">{{ epCount }}</span>
+      </div>
+      <div style="flex:1;overflow-y:auto;max-height:520px">
+        <sc-for list="{{ episodes }}" as="e" hint-placeholder-count="3">
+          <button onClick="{{ e.select }}" aria-current="{{ e.active }}" style="width:100%;border:0;border-bottom:2px solid var(--color-divider);background:{{ e.bg }};color:{{ e.fg }};cursor:pointer;padding:12px 16px;display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;align-items:center;text-align:start;font-family:var(--font-body)" style-hover="background:var(--color-neutral-200);color:var(--color-text)">
+            <img src="{{ e.thumb }}" alt="" loading="lazy" style="width:120px;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--color-neutral-300)">
+            <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+              <span style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-feature-settings:'tnum' 1">{{ e.num }}</span>
+              <span style="font-size:15px;font-weight:600;line-height:1.3">{{ e.title }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#1b1b1b;color:#fff;margin-top:clamp(48px,6vw,96px)">
+  <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,128px) clamp(20px,4vw,56px);display:flex;flex-direction:column;gap:36px;align-items:flex-start">
+    <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(36px,5.4vw,80px);line-height:1.02;letter-spacing:-0.02em;margin:0;max-width:16ch;color:#fff">{{ t.closeTitle }}</h2>
+    <a href="https://apps.microsoft.com/detail/9p6s9zwf98h1?hl=tr-TR&amp;gl=TR" target="_blank" rel="noopener" style="background:#fff;color:var(--color-text);padding:16px 22px;min-width:280px;display:flex;justify-content:space-between;align-items:center;gap:24px;font-weight:700" style-hover="background:var(--color-neutral-200)">
+      <span>{{ t.ctaDownload }} — Microsoft Store</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform:scaleX({{ flip }})"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+</section>
+
+<footer style="max-width:1440px;margin:0 auto;padding:40px clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px;font-size:14px;line-height:1.6">
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <span style="font-family:var(--font-heading);font-weight:800;font-size:18px;display:flex;align-items:center;gap:10px"><img src="images/modis-logo-dark.png" alt="modis" style="height:20px;width:auto;display:block"><span style="font-weight:500;letter-spacing:0.04em">PDS</span></span>
+    <span>{{ t.footTag }}</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:4px">
+    <a href="https://wa.me/905521284440" dir="ltr" style="text-align:start">WhatsApp · +90 552 128 44 40</a>
+    <a href="tel:4440693" dir="ltr" style="text-align:start">{{ t.telLabel }} · 444 06 93</a>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
+        <button onClick="{{ l.select }}" style="border:0;background:transparent;padding:0;cursor:pointer;font-family:var(--font-body);font-size:14px;font-weight:{{ l.weight }};color:var(--color-text);border-bottom:2px solid {{ l.mark }}">{{ l.name }}</button>
+      </sc-for>
+    </div>
+    <span style="opacity:0.72">© 2026 Modis PDS. {{ t.rights }}</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const MS = 'https://apps.microsoft.com/detail/9p6s9zwf98h1?hl=tr-TR&gl=TR';
+const I18N = {
+tr: {
+  metaTitle: 'Modis PDS — Mimari Danışmanlık için Yapay Zekâ Destekli 3D Planlama, Render ve CRM',
+  metaDesc: 'Modis PDS; mimari danışmanlık ve iç mimarlık ekipleri için yapay zekâ destekli 3D planlama, DWG/PDF içe aktarım, 30 saniyede 4K render ve CRM entegre teklif yönetimi sunar.',
+  navFeatures: 'Çözümler', navDownload: 'İndirin', navSupport: 'Destek', langLabel: 'Dil',
+  heroKicker: 'Mimari Danışmanlık · İç Mimarlık · Yapay Zekâ Destekli Görselleştirme',
+  heroTitle: 'Mimari danışmanlık süreçlerinizi tasarımdan teklife tek platformda yönetin.',
+  heroSub: 'Modis PDS; mağazalarımız ve partnerlerimiz için geliştirilmiş, yapay zekâ destekli 3D planlama, yüksek çözünürlüklü görselleştirme ve CRM çözümüdür.',
+  ctaDownload: 'Uygulamayı İndirin', ctaExplore: 'Çözümleri İnceleyin',
+  dlWin: 'Windows', dlNow: 'İndirin', dlSoonAndroid: 'Çok yakında', dlSoonIos: 'Çok yakında',
+  slides: ['Oturma odası', 'Yatak odası', 'Salon', 'Yatak odası', 'Yemek ve oturma alanı'],
+  featKicker: 'Çözümler', featTitle: 'Modis PDS ile iş süreçlerinizi uçtan uca dijitalleştirin.',
+  f: [
+    ['Akıllı, Hızlı ve Bütüncül Altyapı', ['Modis PDS; yapay zekâ destekli çizim, fotogerçekçi görselleştirme ve CRM entegrasyonunu tek bir altyapıda birleştirir. Müşterilerinize sunduğunuz yaşam alanı deneyimini dakikalar içinde, tutarlı ve ölçülebilir biçimde hayata geçirmenizi sağlar.'], ''],
+    ['DWG ve PDF İçe Aktarım', ['Mevcut DWG ve PDF projelerinizi doğrudan içe aktararak kat planlarını kısa sürede 3D modele dönüştürün; yeniden çizim ihtiyacını ortadan kaldırın.'], 'DWG’den 3D’ye'],
+    ['Ürün ve Materyal Kütüphanesi', ['Kategori ve koleksiyon bazında yapılandırılmış kütüphaneden ürünleri seçerek projeye yerleştirin; materyal ve renk varyasyonlarını gerçek zamanlı olarak değerlendirin.'], 'Ürün ve materyal kütüphanesi'],
+    ['CRM Entegrasyonu', ['Tasarım tamamlandığında, projede yer alan ürün ve materyal seçimleri tek adımda teklife dönüştürülür. Tekliflere render, video ve 360° panoramik görseller eklenebilir.', 'Gönderilen tekliflerin müşteri tarafından görüntülenme ve paylaşım durumu anlık olarak izlenir; satış ekibiniz müşteriyle en doğru zamanda iletişime geçer.', 'CRM modülü müşteri verilerinizi güvenle saklar ve yeniden pazarlama çalışmalarına altyapı sağlar. Satış performansı yüksek ürün ve materyal kombinasyonlarına, çalışan ve vitrin performansına ilişkin yorumlanabilir veriler üretir.'], '3D tasarımdan teklife'],
+    ['Yüksek Çözünürlüklü Render', ['Modis PDS, 1K, 2K ve 4K çözünürlükte fotogerçekçi görselleri 30 saniye içinde üretir. Işık kurgusu, aksesuar yerleşimi ve tavan tasarımı sistem tarafından otomatik olarak tamamlanır.', 'Müşterinin mevcut zemin kaplaması veya korunacak mobilyaları sahneye dahil edilerek gerçeğe en yakın sonuç elde edilir.', 'Yapay zekâ kredileri, Modis Genel Merkezi tarafından iş ortaklarımız için tahsis edilmiştir. Kredi kullanım esasları aşağıda yer almaktadır.'], 'Render üretimi'],
+    ['Eğitim ve Kurumsal Destek', ['Ekiplerinizin Modis PDS’i en verimli şekilde kullanabilmesi için WhatsApp ve telefon üzerinden kesintisiz destek sunuyoruz.', 'Eğitim video serimiz ile ekibinizin yetkinliğini standart hale getirin.'], '']
+  ],
+  mPlan: 'Kat planı', mRender: 'Render', mQuote: 'Teklif',
+  crOutput: 'Çıktı', crCredit: 'Kredi', crFree: 'Kredi kullanılmaz',
+  watch: 'Eğitim Videolarını İzleyin', waLabel: 'WhatsApp Destek Hattı', telLabel: 'Müşteri Destek Hattı',
+  closeTitle: 'Yaşam alanı deneyimini dakikalar içinde sunmaya bugün başlayın.',
+  footTag: 'Mimari danışmanlık ve mobilya perakendesi için yapay zekâ destekli tasarım ve satış platformu.',
+  rights: 'Tüm hakları saklıdır.'
+},
+en: {
+  metaTitle: 'Modis PDS — AI-Powered 3D Planning, Rendering and CRM for Architectural Consulting',
+  metaDesc: 'Modis PDS provides AI-powered 3D planning, DWG/PDF import, 4K rendering in 30 seconds and CRM-integrated quotation management for architectural consulting and interior design teams.',
+  navFeatures: 'Solutions', navDownload: 'Download', navSupport: 'Support', langLabel: 'Language',
+  heroKicker: 'Architectural Consulting · Interior Design · AI-Powered Visualisation',
+  heroTitle: 'Manage your architectural consulting workflow from design to quotation on a single platform.',
+  heroSub: 'Modis PDS is an AI-powered solution for 3D planning, high-resolution visualisation and CRM, developed for our stores and partners.',
+  ctaDownload: 'Download the App', ctaExplore: 'Explore Solutions',
+  dlWin: 'Windows', dlNow: 'Download', dlSoonAndroid: 'Coming soon', dlSoonIos: 'Soon',
+  slides: ['Living room', 'Bedroom', 'Lounge', 'Bedroom', 'Dining and living area'],
+  featKicker: 'Solutions', featTitle: 'Digitalise your business processes end to end with Modis PDS.',
+  f: [
+    ['Smart, Fast and Integrated Infrastructure', ['Modis PDS unifies AI-assisted drawing, photorealistic visualisation and CRM integration in a single infrastructure, enabling you to deliver the living-space experience to your clients within minutes — consistently and measurably.'], ''],
+    ['DWG and PDF Import', ['Import existing DWG and PDF projects directly and convert floor plans into 3D models in a short time, eliminating the need for redrawing.'], 'DWG to 3D'],
+    ['Product and Material Library', ['Select products from a library structured by category and collection, place them in the project and evaluate material and colour variations in real time.'], 'Product and material library'],
+    ['CRM Integration', ['Once the design is complete, all product and material selections are converted into a quotation in a single step. Renders, videos and 360° panoramic images can be attached.', 'Client viewing and sharing activity is monitored in real time, allowing your sales team to follow up at the right moment.', 'The CRM module securely stores client data and provides the foundation for re-marketing. It generates actionable insights on top-performing product and material combinations, as well as staff and showroom performance.'], 'From 3D design to quotation'],
+    ['High-Resolution Rendering', ['Modis PDS produces photorealistic images in 1K, 2K and 4K within 30 seconds. Lighting, accessory placement and ceiling design are completed automatically by the system.', 'The client’s existing flooring or retained furniture can be included in the scene for the most realistic result.', 'AI credits have been allocated to our partners by Modis Headquarters. Credit usage terms are listed below.'], 'Render production'],
+    ['Training and Corporate Support', ['We provide uninterrupted support via WhatsApp and telephone so that your teams can use Modis PDS as efficiently as possible.', 'Standardise your team’s expertise with our training video series.'], '']
+  ],
+  mPlan: 'Floor plan', mRender: 'Render', mQuote: 'Quotation',
+  crOutput: 'Output', crCredit: 'Credits', crFree: 'No credits used',
+  watch: 'Watch Training Videos', waLabel: 'WhatsApp Support Line', telLabel: 'Customer Support Line',
+  closeTitle: 'Start delivering the living-space experience in minutes, today.',
+  footTag: 'AI-powered design and sales platform for architectural consulting and furniture retail.',
+  rights: 'All rights reserved.'
+},
+ru: {
+  metaTitle: 'Modis PDS — 3D-планирование, рендеринг и CRM на базе ИИ для архитектурного консалтинга',
+  metaDesc: 'Modis PDS предлагает 3D-планирование на базе ИИ, импорт DWG/PDF, 4K-рендеринг за 30 секунд и управление коммерческими предложениями с интеграцией CRM для архитектурных и дизайнерских команд.',
+  navFeatures: 'Решения', navDownload: 'Скачать', navSupport: 'Поддержка', langLabel: 'Язык',
+  heroKicker: 'Архитектурный консалтинг · Дизайн интерьера · Визуализация на базе ИИ',
+  heroTitle: 'Управляйте процессами архитектурного консалтинга — от проекта до коммерческого предложения — на единой платформе.',
+  heroSub: 'Modis PDS — решение на базе ИИ для 3D-планирования, визуализации высокого разрешения и CRM, разработанное для наших магазинов и партнёров.',
+  ctaDownload: 'Скачать приложение', ctaExplore: 'Ознакомиться с решениями',
+  dlWin: 'Windows', dlNow: 'Скачать', dlSoonAndroid: 'Скоро', dlSoonIos: 'Скоро',
+  slides: ['Гостиная', 'Спальня', 'Салон', 'Спальня', 'Столовая и гостиная'],
+  featKicker: 'Решения', featTitle: 'Цифровизируйте бизнес-процессы от начала до конца с Modis PDS.',
+  f: [
+    ['Интеллектуальная, быстрая и комплексная инфраструктура', ['Modis PDS объединяет черчение с поддержкой ИИ, фотореалистичную визуализацию и интеграцию с CRM в единой инфраструктуре, позволяя за считанные минуты последовательно и измеримо представлять клиентам жилое пространство.'], ''],
+    ['Импорт DWG и PDF', ['Импортируйте существующие проекты DWG и PDF напрямую и в кратчайшие сроки преобразуйте планировки в 3D-модели без повторного черчения.'], 'Из DWG в 3D'],
+    ['Библиотека изделий и материалов', ['Выбирайте изделия из библиотеки, структурированной по категориям и коллекциям, размещайте их в проекте и оценивайте варианты материалов и цветов в реальном времени.'], 'Библиотека изделий и материалов'],
+    ['Интеграция с CRM', ['По завершении проекта все выбранные изделия и материалы в один шаг формируются в коммерческое предложение. К нему можно приложить рендеры, видео и панорамы 360°.', 'Просмотры и пересылка предложения клиентом отслеживаются в реальном времени, что позволяет отделу продаж связаться с клиентом в нужный момент.', 'Модуль CRM надёжно хранит данные клиентов и служит основой для ремаркетинга. Он формирует аналитику по наиболее продаваемым сочетаниям изделий и материалов, а также по эффективности сотрудников и витрин.'], 'От 3D-проекта к предложению'],
+    ['Рендеринг высокого разрешения', ['Modis PDS создаёт фотореалистичные изображения в разрешении 1K, 2K и 4K за 30 секунд. Освещение, расстановка декора и дизайн потолка выполняются системой автоматически.', 'Существующее напольное покрытие клиента или сохраняемая мебель могут быть включены в сцену для максимально реалистичного результата.', 'ИИ-кредиты выделены партнёрам головным офисом Modis. Условия использования кредитов приведены ниже.'], 'Создание рендера'],
+    ['Обучение и корпоративная поддержка', ['Мы обеспечиваем непрерывную поддержку по WhatsApp и телефону, чтобы ваши команды использовали Modis PDS максимально эффективно.', 'Стандартизируйте компетенции команды с помощью серии обучающих видео.'], '']
+  ],
+  mPlan: 'Планировка', mRender: 'Рендер', mQuote: 'Предложение',
+  crOutput: 'Результат', crCredit: 'Кредиты', crFree: 'Без списания',
+  watch: 'Смотреть обучающие видео', waLabel: 'Поддержка в WhatsApp', telLabel: 'Служба поддержки клиентов',
+  closeTitle: 'Представляйте жилое пространство за минуты — начните сегодня.',
+  footTag: 'Платформа дизайна и продаж на базе ИИ для архитектурного консалтинга и мебельного ритейла.',
+  rights: 'Все права защищены.'
+},
+ar: {
+  metaTitle: 'Modis PDS — تخطيط ثلاثي الأبعاد وعرض وإدارة علاقات العملاء بالذكاء الاصطناعي للاستشارات المعمارية',
+  metaDesc: 'يقدم Modis PDS تخطيطاً ثلاثي الأبعاد مدعوماً بالذكاء الاصطناعي، واستيراد ملفات DWG/PDF، وعرضاً بدقة 4K خلال 30 ثانية، وإدارة عروض الأسعار المتكاملة مع CRM لفرق الاستشارات المعمارية والتصميم الداخلي.',
+  navFeatures: 'الحلول', navDownload: 'التنزيل', navSupport: 'الدعم', langLabel: 'اللغة',
+  heroKicker: 'الاستشارات المعمارية · التصميم الداخلي · التصوير المرئي بالذكاء الاصطناعي',
+  heroTitle: 'أدِر أعمال الاستشارات المعمارية من التصميم حتى عرض السعر عبر منصة واحدة.',
+  heroSub: 'Modis PDS حل مدعوم بالذكاء الاصطناعي للتخطيط ثلاثي الأبعاد والتصوير المرئي عالي الدقة وإدارة علاقات العملاء، طُوّر لمتاجرنا وشركائنا.',
+  ctaDownload: 'نزّل التطبيق', ctaExplore: 'استعرض الحلول',
+  dlWin: 'Windows', dlNow: 'تنزيل', dlSoonAndroid: 'قريباً', dlSoonIos: 'قريباً',
+  slides: ['غرفة المعيشة', 'غرفة النوم', 'الصالون', 'غرفة النوم', 'منطقة الطعام والمعيشة'],
+  featKicker: 'الحلول', featTitle: 'حوّل عملياتك التجارية رقمياً من البداية إلى النهاية مع Modis PDS.',
+  f: [
+    ['بنية تحتية ذكية وسريعة ومتكاملة', ['يجمع Modis PDS بين الرسم المدعوم بالذكاء الاصطناعي والتصوير المرئي الواقعي والتكامل مع CRM في بنية واحدة، ليمكّنك من تقديم تجربة المساحة المعيشية لعملائك خلال دقائق بصورة متسقة وقابلة للقياس.'], ''],
+    ['استيراد ملفات DWG و PDF', ['استورد مشاريع DWG و PDF الحالية مباشرةً، وحوّل المخططات إلى نماذج ثلاثية الأبعاد في وقت قصير دون الحاجة إلى إعادة الرسم.'], 'من DWG إلى ثلاثي الأبعاد'],
+    ['مكتبة المنتجات والخامات', ['اختر المنتجات من مكتبة منظمة حسب الفئة والمجموعة، وضعها في المشروع، وقيّم خيارات الخامات والألوان في الوقت الفعلي.'], 'مكتبة المنتجات والخامات'],
+    ['التكامل مع CRM', ['عند اكتمال التصميم، تتحول جميع اختيارات المنتجات والخامات إلى عرض سعر بخطوة واحدة، مع إمكانية إرفاق الصور والفيديو والعروض البانورامية 360°.', 'تتم متابعة اطلاع العميل على العرض ومشاركته لحظياً، مما يتيح لفريق المبيعات التواصل في الوقت الأنسب.', 'تحفظ وحدة CRM بيانات العملاء بأمان وتوفر الأساس لحملات إعادة التسويق، كما تنتج بيانات تحليلية حول أكثر تركيبات المنتجات والخامات مبيعاً وأداء الموظفين وواجهات العرض.'], 'من التصميم ثلاثي الأبعاد إلى عرض السعر'],
+    ['عرض عالي الدقة', ['ينتج Modis PDS صوراً واقعية بدقة 1K و2K و4K خلال 30 ثانية، حيث يُكمل النظام تلقائياً الإضاءة وتوزيع الإكسسوارات وتصميم السقف.', 'يمكن تضمين أرضيات العميل الحالية أو الأثاث المُحتفظ به في المشهد للحصول على نتيجة أقرب إلى الواقع.', 'خصّص المقر الرئيسي لـ Modis أرصدة الذكاء الاصطناعي لشركائنا. شروط استخدام الأرصدة موضحة أدناه.'], 'إنتاج العرض'],
+    ['التدريب والدعم المؤسسي', ['نقدم دعماً متواصلاً عبر واتساب والهاتف لتتمكن فرقكم من استخدام Modis PDS بأعلى كفاءة.', 'وحّد كفاءة فريقك من خلال سلسلة فيديوهات التدريب.'], '']
+  ],
+  mPlan: 'المخطط', mRender: 'العرض', mQuote: 'عرض السعر',
+  crOutput: 'المخرَج', crCredit: 'الرصيد', crFree: 'دون خصم',
+  watch: 'شاهد فيديوهات التدريب', waLabel: 'خط دعم واتساب', telLabel: 'خط خدمة العملاء',
+  closeTitle: 'ابدأ اليوم بتقديم تجربة المساحة المعيشية خلال دقائق.',
+  footTag: 'منصة تصميم ومبيعات مدعومة بالذكاء الاصطناعي للاستشارات المعمارية وتجارة الأثاث.',
+  rights: 'جميع الحقوق محفوظة.'
+}};
+const NAMES = { tr: 'Türkçe', en: 'English', ru: 'Русский', ar: 'العربية' };
+const KINDS = ['triptych', 'video', 'video', 'video', 'video', 'support'];
+const SLOTS = [null, 'vid-dwg', 'vid-library', 'vid-crm', 'vid-render', null];
+const VIDEOS = [null, 'videos/dwg-pdf-ice-aktarim.mp4', 'videos/urun-kutuphanesi.mp4', null, 'videos/render-alim.mp4', null];
+const IMAGES = [null, null, null, 'images/istanbul-render.jpg', null, null];
+const ANCHORS = ['altyapi', 'dwg-import', 'kutuphane', 'crm', 'render', 'destek'];
+const LANGS = ['tr', 'en', 'ru', 'ar'];
+
+const SERIES = {
+  // list: YouTube playlist ID (PL...) — doldurulunca oynatıcı YouTube'un yerleşik oynatma listesini de gösterir.
+  // videos: sitede listelenecek bölümler (id + başlık). Yeni bölüm eklemek için satır ekleyin.
+  tr: { list: 'PLFve91N1v2po', videos: [{ id: 'b1f2GmGaFjo', title: 'Modis PDS Eğitim Serisi' }] },
+  en: { list: '', videos: [{ id: 'WTH33J5gmYQ', title: 'Modis PDS Training Series' }] },
+  ru: { list: '', videos: [{ id: 'E-o3NlLjJqM', title: 'Обучающая серия Modis PDS' }] },
+  ar: { list: '', videos: [{ id: 'MNszjL0Pymc', title: 'سلسلة تدريب Modis PDS' }] }
+};
+const ST = {
+  tr: { kicker: 'Eğitim & Kurumsal Destek', title: 'Adım adım eğitim video serisi', open: "YouTube'da aç", list: 'Bölümler', ep: 'Bölüm' },
+  en: { kicker: 'Training & Corporate Support', title: 'Step-by-step training video series', open: 'Open on YouTube', list: 'Episodes', ep: 'Episode' },
+  ru: { kicker: 'Обучение и корпоративная поддержка', title: 'Пошаговая серия обучающих видео', open: 'Открыть на YouTube', list: 'Выпуски', ep: 'Выпуск' },
+  ar: { kicker: 'التدريب والدعم المؤسسي', title: 'سلسلة فيديوهات تدريبية خطوة بخطوة', open: 'افتح على يوتيوب', list: 'الحلقات', ep: 'الحلقة' }
+};
+class Component extends DCLogic {
+  state = { lang: 'tr', idx: 0, menu: false, vid: 0 };
+  componentDidMount() {
+    VIDEOS.filter(Boolean).forEach(v => fetch(v).then(r => r.blob()).then(b => {
+      const u = URL.createObjectURL(b.type ? b : new Blob([b], { type: 'video/mp4' }));
+      this.setState(st => ({ blobs: { ...(st.blobs || {}), [v]: u } }));
+    }).catch(() => {}));
+    let l = new URLSearchParams(location.search).get('lang');
+    if (!LANGS.includes(l)) { try { l = localStorage.getItem('modis-lang'); } catch (e) {} }
+    if (LANGS.includes(l) && l !== 'tr') this.setState({ lang: l });
+    this.syncHead();
+    this.start();
+    this.onDoc = e => { if (this.state.menu && !e.target.closest('[data-lang-menu]')) this.setState({ menu: false }); };
+    document.addEventListener('click', this.onDoc);
+  }
+  componentDidUpdate(_, prev) { if (prev.lang !== this.state.lang) this.syncHead(); }
+  componentWillUnmount() { clearInterval(this.timer); document.removeEventListener('click', this.onDoc); }
+  start() { clearInterval(this.timer); this.timer = setInterval(() => this.go(this.state.idx + 1), 6000); }
+  go(i) { this.setState({ idx: (i + 5) % 5 }); this.start(); }
+  syncHead() {
+    const t = I18N[this.state.lang];
+    document.documentElement.lang = this.state.lang;
+    document.documentElement.dir = this.state.lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = t.metaTitle;
+    const m = document.querySelector('meta[name="description"]');
+    if (m) m.setAttribute('content', t.metaDesc);
+  }
+  setLang(l) {
+    this.setState({ lang: l, menu: false, vid: 0 });
+    try { localStorage.setItem('modis-lang', l); } catch (e) {}
+  }
+  renderVals() {
+    const { lang, idx } = this.state;
+    const t = I18N[lang];
+    const slides = [1, 2, 3, 4, 5].map((n, i) => ({
+      src: `images/render-${n}.jpg`, alt: `Modis PDS render — ${t.slides[i]}`,
+      opacity: i === idx ? 1 : 0, scale: i === idx ? 1.04 : 1,
+      bar: i === idx ? '#fff' : 'rgba(255,255,255,0.45)',
+      go: () => this.go(i)
+    }));
+    const features = t.f.map(([title, paras, label], i) => ({
+      num: String(i + 1).padStart(2, '0'), title, paras, mediaLabel: label,
+      anchor: ANCHORS[i], slotId: SLOTS[i], slotHint: 'Video / görsel: ' + label,
+      isTriptych: KINDS[i] === 'triptych', isVideo: KINDS[i] === 'video',
+      isSupport: KINDS[i] === 'support', isRender: i === 4,
+      videoSrc: VIDEOS[i] ? ((this.state.blobs || {})[VIDEOS[i]] || VIDEOS[i]) : null, hasVideo: !!VIDEOS[i], imgSrc: IMAGES[i] || undefined, noVideo: !VIDEOS[i]
+    }));
+    const ser = SERIES[lang], vid = Math.min(this.state.vid, ser.videos.length - 1);
+    const episodes = ser.videos.map((v, i) => ({
+      num: ST[lang].ep + ' ' + String(i + 1).padStart(2, '0'), title: v.title,
+      thumb: 'https://i.ytimg.com/vi/' + v.id + '/mqdefault.jpg', active: i === vid,
+      bg: i === vid ? '#1b1b1b' : 'transparent', fg: i === vid ? '#fff' : 'var(--color-text)',
+      select: () => this.setState({ vid: i })
+    }));
+    return {
+      videoRef: el => { if (el) { el.muted = true; el.loop = true; el.controls = true; const p = el.play && el.play(); if (p && p.catch) p.catch(() => {}); } },
+      st: ST[lang], episodes, activeTitle: ser.videos[vid].title,
+      epCount: String(ser.videos.length).padStart(2, '0'),
+      ytEmbed: 'https://www.youtube-nocookie.com/embed/' + ser.videos[vid].id + '?rel=0' + (ser.list ? '&list=' + ser.list : ''),
+      ytUrl: ser.list ? 'https://www.youtube.com/playlist?list=' + ser.list : 'https://youtu.be/' + ser.videos[vid].id,
+      langName: NAMES[lang], menuOpen: this.state.menu, toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
+      t, lang, dir: lang === 'ar' ? 'rtl' : 'ltr', flip: lang === 'ar' ? -1 : 1,
+      slides, features,
+      counter: `${String(idx + 1).padStart(2, '0')} / 05`, caption: t.slides[idx],
+      prev: () => this.go(idx - 1), next: () => this.go(idx + 1),
+      credits: [
+        { k: '1K render', v: '1' }, { k: '4K render', v: '4' },
+        { k: 'Local render', v: t.crFree }, { k: 'Cloud render', v: t.crFree }
+      ],
+      langs: LANGS.map(l => ({
+        label: l.toUpperCase(), name: NAMES[l], active: l === lang, weight: l === lang ? 700 : 400, mark: l === lang ? '#1b1b1b' : 'transparent',
+        bg: l === lang ? 'var(--color-text)' : 'transparent',
+        fg: l === lang ? 'var(--color-bg)' : 'var(--color-text)',
+        select: () => this.setLang(l)
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

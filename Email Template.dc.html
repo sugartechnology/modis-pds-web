@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Modis PDS — E-posta Şablonu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="_ds/modernist-f548c5d0-6f90-4d33-9a49-57cd8896f47c/styles.css">
+<script src="_ds/modernist-f548c5d0-6f90-4d33-9a49-57cd8896f47c/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);text-wrap:pretty}
+a{color:var(--color-text);text-decoration:none}
+a:hover{color:var(--color-accent-700)}
+*{box-sizing:border-box}
+:root{--color-accent:#1b1b1b;--color-accent-100:#ebeae9;--color-accent-200:#dcdad8;--color-accent-300:#c4c1be;--color-accent-400:#5a5857;--color-accent-500:#1b1b1b;--color-accent-600:#3a3938;--color-accent-700:#1b1b1b;--color-accent-800:#111;--color-accent-900:#000;--color-accent-2:#1b1b1b}
+</style>
+</helmet>
+<div style="min-height:100vh;background:var(--color-bg)">
+<header style="position:sticky;top:0;z-index:20;background:var(--color-bg);border-bottom:2px solid var(--color-divider)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,4vw,56px);height:72px;display:flex;align-items:center;gap:32px">
+    <span style="font-family:var(--font-heading);font-weight:800;font-size:20px;letter-spacing:-0.01em;display:flex;align-items:center;gap:10px;white-space:nowrap">
+      <span style="width:12px;height:12px;background:var(--color-accent);display:block"></span>MODIS PDS
+    </span>
+    <span style="font-size:14px;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-accent-700)">E-posta Şablonu</span>
+  </div>
+</header>
+
+<main style="max-width:1440px;margin:0 auto;padding:clamp(40px,6vw,88px) clamp(20px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:48px clamp(32px,5vw,96px);align-items:start">
+  <div style="display:flex;flex-direction:column;gap:24px;max-width:52ch;position:sticky;top:120px">
+    <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700)">E-posta Şablonu</span>
+    <h1 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(32px,3.6vw,52px);line-height:1.06;letter-spacing:-0.02em;margin:0">Web sayfasının e-postaya uygun HTML sürümü.</h1>
+    <p style="font-size:17px;line-height:1.65;margin:0">Gmail, Outlook ve Apple Mail ile uyumlu, tablo tabanlı ve satır içi stillerle hazırlanmış 600 px genişliğinde şablon. İndirdiğiniz dosyayı doğrudan e-posta gönderim aracınıza aktarabilirsiniz.</p>
+
+    <div style="border-top:2px solid var(--color-divider);padding-top:24px;display:flex;flex-direction:column;gap:10px">
+      <label for="imgbase" style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700">Görsel sunucu adresi</label>
+      <input id="imgbase" class="input" type="url" placeholder="https://cdn.modis.com.tr/email/" value="{{ base }}" onChange="{{ setBase }}" style="width:100%">
+      <span style="font-size:14px;line-height:1.5;opacity:0.8">Görseller alıcılara bu adresten yüklenir. <code>images/</code> klasöründeki render dosyalarını bu adrese yükleyin; boş bırakılırsa göreli yol korunur.</span>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-primary" onClick="{{ download }}" style="display:flex;align-items:center;gap:10px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>
+        E-posta HTML’i olarak indir
+      </button>
+      <button class="btn btn-secondary" onClick="{{ copy }}">{{ copyLabel }}</button>
+    </div>
+    <sc-if value="{{ status }}" hint-placeholder-val="{{ false }}">
+      <span style="font-size:14px;color:var(--color-accent-700)">{{ status }}</span>
+    </sc-if>
+  </div>
+
+  <div style="border:2px solid var(--color-divider);background:var(--color-neutral-200)">
+    <div style="display:flex;justify-content:space-between;padding:10px 14px;border-bottom:2px solid var(--color-divider);background:var(--color-bg);font-size:12px;letter-spacing:0.08em;text-transform:uppercase">
+      <span>Önizleme · 600 px</span><span>email-template.html</span>
+    </div>
+    <div style="overflow:auto;display:flex;justify-content:center;padding:24px 0">
+      <iframe src="email-template.html" title="E-posta önizlemesi" style="width:640px;max-width:100%;height:2600px;border:0;background:#f3f2f2;display:block"></iframe>
+    </div>
+  </div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { base: '', status: '', copied: false };
+  async getHtml() {
+    const r = await fetch('email-template.html');
+    let html = await r.text();
+    const tag = '(s' + 'cript|style)';
+    html = html.replace(new RegExp('<' + tag + '[^>]*data-omelette-injected[^>]*>[\\s\\S]*?<\\/\\1>', 'g'), '');
+    html = html.replace(new RegExp('<s' + 'cript\\b[\\s\\S]*?<\\/s' + 'cript>', 'gi'), '');
+    let b = this.state.base.trim();
+    if (b) { if (!b.endsWith('/')) b += '/'; html = html.split('src="images/').join('src="' + b); }
+    return html;
+  }
+  renderVals() {
+    return {
+      base: this.state.base,
+      setBase: e => this.setState({ base: e.target.value }),
+      status: this.state.status,
+      copyLabel: this.state.copied ? 'Kopyalandı' : 'HTML kodunu kopyala',
+      download: async () => {
+        const html = await this.getHtml();
+        const url = URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
+        const a = document.createElement('a');
+        a.href = url; a.download = 'modis-pds-email.html';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        this.setState({ status: this.state.base.trim() ? 'İndirildi — görseller sunucu adresine yönlendirildi.' : 'İndirildi — göndermeden önce görsel sunucu adresini girmeniz önerilir.' });
+      },
+      copy: async () => {
+        try { await navigator.clipboard.writeText(await this.getHtml()); this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 2000); }
+        catch (e) { this.setState({ status: 'Kopyalama başarısız; indirme seçeneğini kullanın.' }); }
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
