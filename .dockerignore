@@ -1,0 +1,7 @@
+.git
+.claude
+.thumbnail
+uploads
+Dockerfile
+.dockerignore
+README.md
