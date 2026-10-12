@@ -244,6 +244,31 @@ a:hover{color:var(--color-neutral-700)}
   </div>
 </section>
 
+<section id="giris" style="max-width:1440px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,4vw,56px) 0">
+  <div style="border-top:2px solid var(--color-divider);padding-top:clamp(36px,4.5vw,64px);display:flex;flex-direction:column;gap:16px;max-width:52ch;margin-bottom:clamp(28px,3vw,44px)">
+    <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-neutral-700)">{{ pl.kicker }}</span>
+    <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(30px,3.6vw,52px);line-height:1.06;letter-spacing:-0.02em;margin:0">{{ pl.title }}</h2>
+    <p style="margin:0;font-size:17px;line-height:1.55;color:var(--color-neutral-700)">{{ pl.sub }}</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:2px;background:var(--color-divider);border:2px solid var(--color-divider)">
+    <sc-for list="{{ portals }}" as="p" hint-placeholder-count="6">
+      <a href="{{ p.url }}" target="_blank" rel="noopener" aria-label="{{ p.aria }}" style="display:flex;flex-direction:column;background:var(--color-bg);color:var(--color-text)" style-hover="background:var(--color-neutral-200)">
+        <div style="aspect-ratio:3/2;overflow:hidden;position:relative;background:var(--color-neutral-300)">
+          <img src="{{ p.img }}" alt="{{ p.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          <span style="position:absolute;top:14px;inset-inline-start:14px;background:#1b1b1b;color:#fff;padding:6px 10px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase">{{ p.type }}</span>
+        </div>
+        <div style="padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:2px solid var(--color-divider)">
+          <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+            <span style="font-family:var(--font-heading);font-size:20px;font-weight:700;letter-spacing:-0.01em">{{ p.name }}</span>
+            <span style="font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-700)">{{ pl.login }}</span>
+          </span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;transform:scaleX({{ flip }})"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
 <section style="background:#1b1b1b;color:#fff;margin-top:clamp(48px,6vw,96px)">
   <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,128px) clamp(20px,4vw,56px);display:flex;flex-direction:column;gap:36px;align-items:flex-start">
     <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(36px,5.4vw,80px);line-height:1.02;letter-spacing:-0.02em;margin:0;max-width:16ch;color:#fff">{{ t.closeTitle }}</h2>
@@ -413,6 +438,20 @@ const SERIES = {
     { id: "rE7wR4Yu48w", title: "صمّم الأبواب بتقنية ثلاثية الأبعاد: ٨ أنواع، سحب وإفلات، وتغيير الخامات | [App]" }
   ] }
 };
+const PORTALS = [
+  { name: 'Modis Administration', kind: 'admin', img: 'images/portal-admin.jpg', url: 'https://portal.coorai.app/modis/login' },
+  { name: 'Modis Fabrika', kind: 'factory', img: 'images/portal-fabrika.jpg', url: 'https://portal2.coorai.app/modis-fabrika/login' },
+  { name: 'Modis Mobilyum', kind: 'store', img: 'images/portal-mobilyum.jpg', url: 'https://portal2.coorai.app/modis-mobiliyum-magaza/login' },
+  { name: 'Modis Masko', kind: 'store', img: 'images/portal-masko.jpg', url: 'https://portal2.coorai.app/modis-masko-magaza/login' },
+  { name: 'Modis Ankara', kind: 'dealer', img: 'images/portal-ankara.jpg', url: 'https://portal2.coorai.app/modis-ankara/login' },
+  { name: 'Modis Konya', kind: 'dealer', img: 'images/portal-konya.jpg', url: 'https://portal2.coorai.app/modis-konya/login' }
+];
+const PL = {
+  tr: { kicker: 'Portal Girişi', title: 'Bayinizin portalına giriş yapın', sub: 'Her bayi ve birim kendi portalını kullanır. Size ait kartı seçerek giriş sayfasına geçin.', login: 'Giriş yap', kinds: { admin: 'Yönetim', factory: 'Fabrika', store: 'Mağaza', dealer: 'Bayi' } },
+  en: { kicker: 'Portal Login', title: 'Sign in to your dealer portal', sub: 'Each dealer and unit has its own portal. Choose your card to go to its sign-in page.', login: 'Sign in', kinds: { admin: 'Administration', factory: 'Factory', store: 'Store', dealer: 'Dealer' } },
+  ru: { kicker: 'Вход в портал', title: 'Войдите в портал вашего дилера', sub: 'У каждого дилера и подразделения свой портал. Выберите свою карточку, чтобы перейти на страницу входа.', login: 'Войти', kinds: { admin: 'Администрация', factory: 'Фабрика', store: 'Магазин', dealer: 'Дилер' } },
+  ar: { kicker: 'دخول البوابة', title: 'سجّل الدخول إلى بوابة الوكيل الخاصة بك', sub: 'لكل وكيل ووحدة بوابة خاصة. اختر البطاقة الخاصة بك للانتقال إلى صفحة تسجيل الدخول.', login: 'تسجيل الدخول', kinds: { admin: 'الإدارة', factory: 'المصنع', store: 'المتجر', dealer: 'الوكيل' } }
+};
 const ST = {
   tr: { kicker: 'Eğitim & Kurumsal Destek', title: 'Adım adım eğitim video serisi', open: "YouTube'da aç", list: 'Bölümler', ep: 'Bölüm' },
   en: { kicker: 'Training & Corporate Support', title: 'Step-by-step training video series', open: 'Open on YouTube', list: 'Episodes', ep: 'Episode' },
@@ -475,6 +514,8 @@ class Component extends DCLogic {
     }));
     return {
       videoRef: el => { if (el) { el.muted = true; el.loop = true; el.controls = true; const p = el.play && el.play(); if (p && p.catch) p.catch(() => {}); } },
+      pl: PL[lang],
+      portals: PORTALS.map(p => ({ ...p, type: PL[lang].kinds[p.kind], alt: p.name + ' — ' + PL[lang].kinds[p.kind], aria: p.name + ' — ' + PL[lang].login })),
       st: ST[lang], episodes, activeTitle: ser.videos[vid].title,
       epCount: String(ser.videos.length).padStart(2, '0'),
       ytEmbed: 'https://www.youtube-nocookie.com/embed/' + ser.videos[vid].id + '?rel=0' + (ser.list ? '&list=' + ser.list : ''),
